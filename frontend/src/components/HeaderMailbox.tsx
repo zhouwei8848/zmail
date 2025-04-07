@@ -180,7 +180,7 @@ const HeaderMailbox: React.FC<HeaderMailboxProps> = ({
   const customizeButtonClass = `${buttonBaseClass} bg-primary text-primary-foreground hover:bg-primary/80 hover:scale-110`;
   
   return (
-    <div className="flex items-center">
+    <div className="flex flex-col items-center w-full">
       {isCustomMode ? (
         <form onSubmit={handleCreateCustom} className="flex flex-col space-y-2">
           <div className="flex items-center space-x-2">
@@ -238,130 +238,131 @@ const HeaderMailbox: React.FC<HeaderMailboxProps> = ({
       ) : (
         <>
           {/* 桌面版显示 */}
-          <div className="hidden md:flex items-center flex-col w-full">
-            {/* 邮箱地址和操作按钮 */}
-            <div className="flex items-center w-full">
+          <div className="hidden md:flex flex-col items-center w-full">
+            {/* 邮箱地址显示 */}
+            <div className="flex items-center w-full mb-3">
               <code className="px-3 py-1.5 text-base font-medium overflow-x-auto max-w-full whitespace-nowrap">
                 {mailbox.address.includes('@') ? mailbox.address : `${mailbox.address}@${domain}`}
               </code>
+            </div>
+            
+            {/* 操作按钮 - 排成一行 */}
+            <div className="flex items-center justify-center space-x-2 w-full">
+              <button
+                onClick={copyToClipboard}
+                className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/80 transition duration-200"
+                disabled={isActionLoading}
+              >
+                {t('mailbox.copyAddress') || '复制邮箱'}
+              </button>
               
-              <div className="relative flex-shrink-0">
-                <button
-                  onClick={copyToClipboard}
-                  className={`w-8 h-8 ${copyButtonClass}`}
-                  aria-label={t('common.copy')}
-                  title={t('common.copy')}
-                >
-                  <i className="fas fa-copy text-sm"></i>
-                </button>
-                
-                {/* 复制成功提示 */}
-                {showCopyTooltip && (
-                  <div className="absolute top-9 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground text-xs py-1 px-2 rounded shadow-lg whitespace-nowrap z-10">
-                    {t('mailbox.copySuccess')}
-                    <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-primary rotate-45"></div>
-                  </div>
-                )}
-              </div>
-              
-              <div className="relative">
-                <button
-                  onClick={handleRefreshMailbox}
-                  className={`w-8 h-8 ${refreshButtonClass}`}
-                  disabled={isActionLoading}
-                  title={t('mailbox.refresh')}
-                >
-                  <i className="fas fa-sync-alt text-sm"></i>
-                </button>
-                
-                {/* 更新成功提示 */}
-                {showRefreshSuccess && (
-                  <div className="absolute top-9 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground text-xs py-1 px-2 rounded shadow-lg whitespace-nowrap z-10">
-                    {t('mailbox.refreshSuccess')}
-                    <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-primary rotate-45"></div>
-                  </div>
-                )}
-              </div>
+              <button
+                onClick={handleRefreshMailbox}
+                className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/80 transition duration-200"
+                disabled={isActionLoading}
+              >
+                {t('mailbox.changeAddress') || '换个邮箱'}
+              </button>
               
               <button
                 onClick={() => setIsCustomMode(true)}
-                className={`w-8 h-8 ${customizeButtonClass}`}
+                className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/80 transition duration-200"
                 disabled={isActionLoading}
-                title={t('mailbox.customize')}
               >
-                <i className="fas fa-edit text-sm"></i>
+                {t('mailbox.customAddress') || '自定义邮箱'}
+              </button>
+              
+              <button
+                onClick={() => window.location.reload()}
+                className="px-4 py-2 bg-primary text-primary-foreground rounded-md hover:bg-primary/80 transition duration-200"
+              >
+                {t('email.refresh') || '刷新邮件'}
               </button>
             </div>
             
             {/* 错误信息显示 */}
             {(copyError || refreshError) && (
-              <div className="text-red-500 text-xs mt-1">
+              <div className="text-red-500 text-xs mt-2">
                 {copyError || refreshError}
+              </div>
+            )}
+            
+            {/* 复制成功提示 */}
+            {showCopyTooltip && (
+              <div className="text-green-500 text-xs mt-2">
+                {t('mailbox.copySuccess')}
+              </div>
+            )}
+            
+            {/* 更新成功提示 */}
+            {showRefreshSuccess && (
+              <div className="text-green-500 text-xs mt-2">
+                {t('mailbox.refreshSuccess')}
               </div>
             )}
           </div>
           
           {/* 移动版显示 */}
-          <div className="flex md:hidden items-center flex-col w-full">
-            {/* 邮箱地址和操作按钮 */}
-            <div className="flex items-center w-full">
-              {/* 替换原来的renderMobileAddress()函数调用，直接显示完整邮箱地址 */}
+          <div className="flex md:hidden flex-col items-center w-full">
+            {/* 邮箱地址显示 */}
+            <div className="flex items-center w-full mb-3">
               <code className="px-3 py-1.5 text-sm font-medium overflow-x-auto max-w-full whitespace-nowrap">
                 {mailbox.address.includes('@') ? mailbox.address : `${mailbox.address}@${domain}`}
               </code>
+            </div>
+            
+            {/* 操作按钮 - 两行排列 */}
+            <div className="grid grid-cols-2 gap-2 w-full">
+              <button
+                onClick={copyToClipboard}
+                className="px-3 py-1.5 bg-primary text-primary-foreground text-sm rounded-md hover:bg-primary/80 transition duration-200"
+                disabled={isActionLoading}
+              >
+                {t('mailbox.copyAddress') || '复制邮箱'}
+              </button>
               
-              <div className="relative flex-shrink-0">
-                <button
-                  onClick={copyToClipboard}
-                  className={`w-6 h-6 ${copyButtonClass}`}
-                  aria-label={t('common.copy')}
-                  title={t('common.copy')}
-                >
-                  <i className="fas fa-copy text-xs"></i>
-                </button>
-                
-                {/* 复制成功提示 */}
-                {showCopyTooltip && (
-                  <div className="absolute top-7 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground text-xs py-1 px-2 rounded shadow-lg whitespace-nowrap z-10">
-                    {t('mailbox.copySuccess')}
-                    <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-primary rotate-45"></div>
-                  </div>
-                )}
-              </div>
-              
-              <div className="relative">
-                <button
-                  onClick={handleRefreshMailbox}
-                  className={`w-6 h-6 ${refreshButtonClass}`}
-                  disabled={isActionLoading}
-                  title={t('mailbox.refresh')}
-                >
-                  <i className="fas fa-sync-alt text-xs"></i>
-                </button>
-                
-                {/* 更新成功提示 */}
-                {showRefreshSuccess && (
-                  <div className="absolute top-7 left-1/2 transform -translate-x-1/2 bg-primary text-primary-foreground text-xs py-1 px-2 rounded shadow-lg whitespace-nowrap z-10">
-                    {t('mailbox.refreshSuccess')}
-                    <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-primary rotate-45"></div>
-                  </div>
-                )}
-              </div>
+              <button
+                onClick={handleRefreshMailbox}
+                className="px-3 py-1.5 bg-primary text-primary-foreground text-sm rounded-md hover:bg-primary/80 transition duration-200"
+                disabled={isActionLoading}
+              >
+                {t('mailbox.changeAddress') || '换个邮箱'}
+              </button>
               
               <button
                 onClick={() => setIsCustomMode(true)}
-                className={`w-6 h-6 ${customizeButtonClass}`}
+                className="px-3 py-1.5 bg-primary text-primary-foreground text-sm rounded-md hover:bg-primary/80 transition duration-200"
                 disabled={isActionLoading}
-                title={t('mailbox.customize')}
               >
-                <i className="fas fa-edit text-xs"></i>
+                {t('mailbox.customAddress') || '自定义邮箱'}
+              </button>
+              
+              <button
+                onClick={() => window.location.reload()}
+                className="px-3 py-1.5 bg-primary text-primary-foreground text-sm rounded-md hover:bg-primary/80 transition duration-200"
+              >
+                {t('email.refresh') || '刷新邮件'}
               </button>
             </div>
             
             {/* 错误信息显示 */}
             {(copyError || refreshError) && (
-              <div className="text-red-500 text-xs mt-1">
+              <div className="text-red-500 text-xs mt-2">
                 {copyError || refreshError}
+              </div>
+            )}
+            
+            {/* 复制成功提示 */}
+            {showCopyTooltip && (
+              <div className="text-green-500 text-xs mt-2">
+                {t('mailbox.copySuccess')}
+              </div>
+            )}
+            
+            {/* 更新成功提示 */}
+            {showRefreshSuccess && (
+              <div className="text-green-500 text-xs mt-2">
+                {t('mailbox.refreshSuccess')}
               </div>
             )}
           </div>
