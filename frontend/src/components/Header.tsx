@@ -22,8 +22,8 @@ const Header: React.FC<HeaderProps> = ({
   return (
     <header className="border-b">
       <Container>
-        <div className="flex items-center justify-between py-3">
-          <Link to="/" className="text-2xl font-bold">
+        <div className="flex flex-col py-3">
+          <Link to="/" className="text-2xl font-bold mb-3">
             {t('app.title')}
           </Link>
           
