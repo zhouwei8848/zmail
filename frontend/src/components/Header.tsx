@@ -27,7 +27,7 @@ const Header: React.FC<HeaderProps> = ({
             {t('app.title')}
           </Link>
           
-          <p className="text-sm text-gray-500 mb-3">保护你的真实邮箱，避免垃圾邮件和信息泄露。</p>
+          <p className="text-sm text-gray-500 mb-3">注册时保护真实邮箱，避免垃圾邮件和信息泄露</p>
           
           {mailbox && (
             <div className="flex items-center bg-muted/70 rounded-md px-3 py-1.5 w-full overflow-hidden">
