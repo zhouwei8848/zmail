@@ -158,7 +158,7 @@ app.post('/api/mailboxes', async (c) => {
       return c.json({ success: false, error: '无效的邮箱地址' }, 400);
     }
     
-    const expiresInHours = 24; // 固定24小时有效期
+    const expiresInHours = 240; // 固定24小时有效期
     
     // 获取客户端IP
     const ip = c.req.header('CF-Connecting-IP') || 'unknown';
