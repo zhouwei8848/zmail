@@ -173,21 +173,6 @@ const HeaderMailbox: React.FC<HeaderMailboxProps> = ({
     setCustomAddressSuccess(null);
   };
   
-  // 移动设备上的邮箱地址显示
-  const renderMobileAddress = () => {
-    const fullAddress = mailbox.address.includes('@') ? mailbox.address : `${mailbox.address}@${domain}`;
-    const [username, domainPart] = fullAddress.split('@');
-    
-    // 如果用户名太长，截断显示
-    const displayUsername = username.length > 10 ? `${username.substring(0, 8)}...` : username;
-    
-    return (
-      <code className="bg-muted px-2 py-1 rounded text-xs font-medium truncate max-w-[120px]">
-        {displayUsername}@{domainPart}
-      </code>
-    );
-  };
-  
   // 按钮基础样式
   const buttonBaseClass = "flex items-center justify-center rounded-md transition-all duration-200";
   const copyButtonClass = `${buttonBaseClass} hover:bg-primary/20 hover:text-primary hover:scale-110 mx-1`;
@@ -253,14 +238,14 @@ const HeaderMailbox: React.FC<HeaderMailboxProps> = ({
       ) : (
         <>
           {/* 桌面版显示 */}
-          <div className="hidden md:flex items-center flex-col">
+          <div className="hidden md:flex items-center flex-col w-full">
             {/* 邮箱地址和操作按钮 */}
-            <div className="flex items-center">
-              <code className="px-3 py-1.5 text-sm font-medium">
+            <div className="flex items-center w-full">
+              <code className="px-3 py-1.5 text-sm font-medium overflow-x-auto max-w-full whitespace-nowrap">
                 {mailbox.address.includes('@') ? mailbox.address : `${mailbox.address}@${domain}`}
               </code>
               
-              <div className="relative">
+              <div className="relative flex-shrink-0">
                 <button
                   onClick={copyToClipboard}
                   className={`w-8 h-8 ${copyButtonClass}`}
@@ -317,12 +302,15 @@ const HeaderMailbox: React.FC<HeaderMailboxProps> = ({
           </div>
           
           {/* 移动版显示 */}
-          <div className="flex md:hidden items-center flex-col">
+          <div className="flex md:hidden items-center flex-col w-full">
             {/* 邮箱地址和操作按钮 */}
-            <div className="flex items-center">
-              {renderMobileAddress()}
+            <div className="flex items-center w-full">
+              {/* 替换原来的renderMobileAddress()函数调用，直接显示完整邮箱地址 */}
+              <code className="px-3 py-1.5 text-xs font-medium overflow-x-auto max-w-full whitespace-nowrap">
+                {mailbox.address.includes('@') ? mailbox.address : `${mailbox.address}@${domain}`}
+              </code>
               
-              <div className="relative">
+              <div className="relative flex-shrink-0">
                 <button
                   onClick={copyToClipboard}
                   className={`w-6 h-6 ${copyButtonClass}`}
