@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import LanguageSwitcher from './LanguageSwitcher';
 import HeaderMailbox from './HeaderMailbox';
 import Container from './Container';
 import { EMAIL_DOMAIN } from '../config';
@@ -22,31 +21,22 @@ const Header: React.FC<HeaderProps> = ({
   return (
     <header className="border-b">
       <Container>
-        <div className="flex items-center justify-between py-3">
+        <div className="flex flex-col py-3">
           <Link to="/" className="text-2xl font-bold">
             {t('app.title')}
           </Link>
           
+          <p className="text-sm text-gray-500 mb-3">注册时保护真实邮箱，避免垃圾邮件和信息泄露</p>
+          
           {mailbox && (
-            <div className="flex items-center bg-muted/70 rounded-md px-3 py-1.5">
-              <HeaderMailbox 
-                mailbox={mailbox} 
-                onMailboxChange={onMailboxChange}
-                domain={EMAIL_DOMAIN}
-                isLoading={isLoading}
-              />
-              <div className="ml-3 pl-3 border-l border-muted-foreground/20 flex items-center">
-                <LanguageSwitcher />
-                <a
-                  href="https://github.com/zaunist/zmail"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-8 h-8 flex items-center justify-center rounded-md transition-all duration-200 hover:bg-primary/20 hover:text-primary hover:scale-110 ml-1"
-                  aria-label="GitHub"
-                  title="GitHub"
-                >
-                  <i className="fab fa-github text-base"></i>
-                </a>
+            <div className="flex flex-col bg-muted/70 rounded-md px-3 py-1.5 w-full overflow-hidden mb-3">
+              <div className="w-full overflow-hidden">
+                <HeaderMailbox 
+                  mailbox={mailbox} 
+                  onMailboxChange={onMailboxChange}
+                  domain={EMAIL_DOMAIN}
+                  isLoading={isLoading}
+                />
               </div>
             </div>
           )}
@@ -56,4 +46,4 @@ const Header: React.FC<HeaderProps> = ({
   );
 };
 
-export default Header; 
+export default Header;
