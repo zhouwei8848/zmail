@@ -241,7 +241,7 @@ const HeaderMailbox: React.FC<HeaderMailboxProps> = ({
           <div className="hidden md:flex items-center flex-col w-full">
             {/* 邮箱地址和操作按钮 */}
             <div className="flex items-center w-full">
-              <code className="px-3 py-1.5 text-sm font-medium overflow-x-auto max-w-full whitespace-nowrap">
+              <code className="px-3 py-1.5 text-base font-medium overflow-x-auto max-w-full whitespace-nowrap">
                 {mailbox.address.includes('@') ? mailbox.address : `${mailbox.address}@${domain}`}
               </code>
               
@@ -306,7 +306,7 @@ const HeaderMailbox: React.FC<HeaderMailboxProps> = ({
             {/* 邮箱地址和操作按钮 */}
             <div className="flex items-center w-full">
               {/* 替换原来的renderMobileAddress()函数调用，直接显示完整邮箱地址 */}
-              <code className="px-3 py-1.5 text-xs font-medium overflow-x-auto max-w-full whitespace-nowrap">
+              <code className="px-3 py-1.5 text-sm font-medium overflow-x-auto max-w-full whitespace-nowrap">
                 {mailbox.address.includes('@') ? mailbox.address : `${mailbox.address}@${domain}`}
               </code>
               
