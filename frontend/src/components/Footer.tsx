@@ -18,17 +18,8 @@ const Footer: React.FC = () => {
               rel="noopener noreferrer"
               className="hover:text-primary transition-colors"
             >
-              <i className="fas fa-blog mr-1"></i>
-             短剧搜
-            </a>
-            <a 
-              href="https://xugou.mdzz.uk" 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="hover:text-primary transition-colors"
-            >
               <i className="fas fa-chart-line mr-1"></i>
-              {t('common.xugouMonitor')}
+              短剧搜
             </a>
           </div>
         </div>
