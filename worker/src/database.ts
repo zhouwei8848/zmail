@@ -223,7 +223,7 @@ export async function cleanupExpiredMailboxes(db: D1Database): Promise<number> {
  */
 export async function cleanupExpiredMails(db: D1Database): Promise<number> {
   const now = getCurrentTimestamp();
-  const oneDayAgo = now - 24 * 60 * 60; // 24小时前的时间戳（秒）
+  const oneDayAgo = now - 240 * 60 * 60; // 24小时前的时间戳（秒）
   
   // 获取过期邮件的ID列表
   const expiredEmails = await db.prepare(`SELECT id FROM emails WHERE received_at <= ?`).bind(oneDayAgo).all();
