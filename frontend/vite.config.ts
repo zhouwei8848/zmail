@@ -13,7 +13,7 @@
      server: {
        proxy: {
          '/api': {
-           target: 'https://zmail-backend.duanjuso.workers.dev',
+           target: 'https://',
            changeOrigin: true,
            secure: true,
            rewrite: (path) => path,
