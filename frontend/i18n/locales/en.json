@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "DJSMAIL-24h Anonymous Email"
+    "title": "DJSMAIL-240h Anonymous Email"
   },
   "common": {
     "loading": "Loading...",
@@ -37,7 +37,7 @@
     "expired": "Expired",
     "expiresInTime": "{{hours}} hours {{minutes}} minutes",
     "expiresInMinutes": "{{minutes}} minutes",
-    "copySuccess": "Email address copied to clipboard",
+    "copySuccess": "Copied to clipboard",
     "copyFailed": "Failed to copy email address",
     "createSuccess": "Mailbox created successfully",
     "createFailed": "Failed to create mailbox",
@@ -46,11 +46,14 @@
     "invalidAddress": "Invalid email address",
     "addressExists": "Email address already exists",
     "refresh": "Change Address",
-    "refreshSuccess": "Address changed successfully",
-    "refreshFailed": "Failed to change address",
+    "refreshSuccess": "Mailbox updated successfully",
+    "refreshFailed": "Failed to update mailbox, please try again later",
     "customize": "Customize Address",
     "notFound": "Mailbox not found or expired",
-    "creatingNew": "Creating new mailbox..."
+    "creatingNew": "Creating new mailbox...",
+    "copyAddress": "Copy Address",
+    "changeAddress": "Change Address",
+    "receiveEmails": "Receive Emails"
   },
   "email": {
     "inbox": "Inbox",
