@@ -1,6 +1,6 @@
 {
   "app": {
-    "title": "DJSMAIL-24小时匿名邮箱"
+    "title": "DJSMAIL-240小时匿名邮箱"
   },
   "common": {
     "loading": "加载中...",
@@ -50,7 +50,10 @@
     "refreshFailed": "邮箱更换失败",
     "customize": "自定义邮箱",
     "notFound": "邮箱不存在或已过期",
-    "creatingNew": "正在创建新邮箱..."
+    "creatingNew": "正在创建新邮箱...",
+    "copyAddress": "复制邮箱",
+    "changeAddress": "换个邮箱",
+    "receiveEmails": "接收邮件"
   },
   "email": {
     "inbox": "收件箱",
@@ -88,5 +91,34 @@
   "errors": {
     "generic": "发生错误，请稍后重试",
     "notFound": "未找到请求的资源"
+  },
+  "home": {
+    "title": "临时邮箱服务",
+    "description": "创建临时邮箱地址，接收邮件，无需注册，保护您的隐私安全",
+    "createButton": "创建临时邮箱",
+    "or": "或",
+    "customPlaceholder": "输入地址",
+    "customButton": "创建",
+    "loading": "正在创建..."
+  },
+  "mailList": {
+    "noMails": "邮箱为空",
+    "waiting": "等待接收邮件...",
+    "autoRefresh": "自动刷新",
+    "on": "开",
+    "off": "关"
+  },
+  "mailDetail": {
+    "from": "发件人",
+    "to": "收件人",
+    "subject": "主题",
+    "date": "日期",
+    "attachments": "附件",
+    "download": "下载",
+    "noAttachments": "无附件",
+    "backToList": "返回列表"
+  },
+  "footer": {
+    "copyright": "© {year} DJSMAIL-240小时匿名邮箱"
   }
 } 
