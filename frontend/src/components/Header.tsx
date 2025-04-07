@@ -30,14 +30,16 @@ const Header: React.FC<HeaderProps> = ({
           <p className="text-sm text-gray-500 mb-3">保护你的真实邮箱，避免垃圾邮件和信息泄露。</p>
           
           {mailbox && (
-            <div className="flex items-center bg-muted/70 rounded-md px-3 py-1.5 w-full md:max-w-[70%]">
-              <HeaderMailbox 
-                mailbox={mailbox} 
-                onMailboxChange={onMailboxChange}
-                domain={EMAIL_DOMAIN}
-                isLoading={isLoading}
-              />
-              <div className="ml-3 pl-3 border-l border-muted-foreground/20 flex items-center">
+            <div className="flex items-center bg-muted/70 rounded-md px-3 py-1.5 w-full overflow-hidden">
+              <div className="w-full overflow-hidden">
+                <HeaderMailbox 
+                  mailbox={mailbox} 
+                  onMailboxChange={onMailboxChange}
+                  domain={EMAIL_DOMAIN}
+                  isLoading={isLoading}
+                />
+              </div>
+              <div className="ml-3 pl-3 border-l border-muted-foreground/20 flex items-center flex-shrink-0">
                 <LanguageSwitcher />
               </div>
             </div>
